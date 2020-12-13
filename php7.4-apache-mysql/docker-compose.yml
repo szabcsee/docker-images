@@ -1,0 +1,52 @@
+version: '3'
+services:
+  web:
+    container_name: web_app
+    build: ./
+    # During development we map local files into the container
+    volumes:
+      # Map current working copy into the container
+      - ./:/var/www/html/
+
+    # Uncomment to use dev specific PHP settings
+    #- ./config/php/local.ini:/etc/php7/conf.d/99-local.ini
+
+    # Uncomment to use the local vendor directory, e.g. for debugging.
+    # This requires that you have copied the directory to your host with
+    #   docker-compose run --rm web cp -ra /var/www/vendor .
+    #- ./vendor:/var/www/vendor
+    links:
+      - db
+    environment:
+      # Make sure to tweak this in production
+      PHP_FPM_MAX_CHILDREN: 5
+      # Enable periodic jobs (see config/crontabs)
+      #ENABLE_CROND: 1
+      PHP_XDEBUG_ENABLED: 1 # Set 1 to enable.
+      XDEBUG_CONFIG: "remote_host=172.17.0.1 remote_enable=1"
+    ports:
+      - "8080:80"
+    networks:
+      - my-network
+  db:
+    container_name: web_db
+    image: mysql:5.7
+    volumes:
+      - db_data:/var/lib/mysql
+    command: mysqld --sql_mode=""
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: training_db
+      MYSQL_USER: training
+      MYSQL_PASSWORD: training_pw
+    ports:
+      - "3306:3306"
+    expose:
+      - '3306'
+    networks:
+      - my-network
+networks:
+  my-network:
+    driver: bridge
+volumes:
+  db_data: {}

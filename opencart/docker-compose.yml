@@ -1,0 +1,47 @@
+version: '3.1'
+
+services:
+  php:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 80:80
+    volumes:
+      - ./src:/var/www/html/
+    links:
+      - db
+    environment:
+      # Make sure to tweak this in production
+      PHP_FPM_MAX_CHILDREN: 5
+      # Enable periodic jobs (see config/crontabs)
+      #ENABLE_CROND: 1
+      PHP_XDEBUG_ENABLED: 1 # Set 1 to enable.
+      XDEBUG_CONFIG: "remote_host=172.17.0.1 remote_enable=1"
+    networks:
+      - my-network
+  db:
+    container_name: puppybox_db
+    image: mysql:5.7
+    command: mysqld --sql_mode=""
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: opencart
+      MYSQL_USER: opencart
+      MYSQL_PASSWORD: secret
+    ports:
+      - "3306:3306"
+    expose:
+      - '3306'
+    networks:
+      - my-network
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+    networks:
+      - my-network
+networks:
+  my-network:
+    driver: bridge
