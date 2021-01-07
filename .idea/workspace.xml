@@ -19,17 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ce18971e-3cb4-43da-bc4b-8ebc9321f788" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/opencart/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/opencart/docker-compose.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/php7.4-apache-mysql/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/php7.4-apache-mysql/docker-compose.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wordpress/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wordpress/docker-compose.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/yii2/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/yii2/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-    </list>
+    <list default="true" id="ce18971e-3cb4-43da-bc4b-8ebc9321f788" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -65,7 +55,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1607878625517</updated>
-      <workItem from="1607878626600" duration="1411000" />
+      <workItem from="1607878626600" duration="1440000" />
     </task>
     <servers />
   </component>
